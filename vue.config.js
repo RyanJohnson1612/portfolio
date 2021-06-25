@@ -3,7 +3,6 @@ module.exports = {
     config.entry("app")
       .add("./src/styles/_reset.scss")
       .add("./src/styles/_variables.scss")
-      .add("./src/styles/_framework.scss")
       .end();
   },
   css: {

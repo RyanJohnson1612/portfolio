@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<div class="header">
-			<div class="flex align-center">
+			<div class="">
 				<img src="../../public/assets/logo.png" alt="Logo" width="150" height="150">
 				<h1>Ryan Johnson</h1>
 			</div>
