@@ -1,10 +1,12 @@
 <template>
     <div>
         <div v-for="slide in numSlides" :key="slide" v-show="slide == currentSlide">
-            <slot :name="slide"></slot>
+            <transition name="fade">
+                <slot :name="slide"></slot>
+            </transition>
         </div>
-        <div v-on:click="nextSlide()">Next Slide</div>
-        <div v-on:click="prevSlide()">Prev Slide</div>
+        <div v-if="nav" v-on:click="nextSlide()">Next Slide</div>
+        <div v-if="nav" v-on:click="prevSlide()">Prev Slide</div>
     </div>    
 </template>
 
@@ -17,6 +19,21 @@ export default {
             type: Number,
             required: true,
         },
+        nav: {
+            type: Boolean,
+            required: false,
+            default: false
+        },
+        autoplay: {
+            type: Number,
+            required: false,
+        }
+    },
+
+    mounted() {
+        if(this.autoplay > 0) {
+            this.autoChangeSlide();
+        }
     },
 
     data() {
@@ -42,7 +59,14 @@ export default {
             else {
                 this.currentSlide = this.numSlides;
             }
-        }
+        },
+
+        autoChangeSlide() {
+            setTimeout(() => {
+                this.nextSlide();
+                this.autoChangeSlide();
+            },  this.autoplay)
+    }
     }
 }
 </script>

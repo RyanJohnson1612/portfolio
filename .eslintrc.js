@@ -12,5 +12,6 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-unused-vars": process.env.NODE_ENV === "production" ? "on" : "off",
     'prettier/prettier': 0,
+    "no-constant-condition": process.env.NODE_ENV === "production" ? "warn" : "off",
   },
 };
