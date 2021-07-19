@@ -7,12 +7,15 @@
 
 <script>
 import Home from "./views/Home.vue";
-// import Navbar from "./components/Nav.vue";
 
 export default {
   components: {
     Home,
     // Navbar
+  },
+
+  mounted() {
+    
   }
 }
 </script>

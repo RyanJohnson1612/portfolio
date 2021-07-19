@@ -1,9 +1,14 @@
 <template>
     <div>
         <div v-for="slide in numSlides" :key="slide" v-show="slide == currentSlide">
-            <transition name="fade">
+            <transition-group name="fade">
                 <slot :name="slide"></slot>
-            </transition>
+            </transition-group>
+        </div>
+        <div>
+            <ul v-if="dots" class="flex align-middle justify-end flex-row pointer-events-none">
+                <li v-for="slide in numSlides" :key="slide" class="h-4 w-4 rounded-full m-2 bg-gray-400" v-on:click="currentSlide = slide"></li>
+            </ul>
         </div>
         <div v-if="nav" v-on:click="nextSlide()">Next Slide</div>
         <div v-if="nav" v-on:click="prevSlide()">Prev Slide</div>
@@ -17,7 +22,7 @@ export default {
     props: {
         numSlides: {
             type: Number,
-            required: true,
+            required: true
         },
         nav: {
             type: Boolean,
@@ -27,12 +32,24 @@ export default {
         autoplay: {
             type: Number,
             required: false,
+            default: null
+        },
+        dots: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     },
 
     mounted() {
-        if(this.autoplay > 0) {
+        if(this.autoplay) {
             this.autoChangeSlide();
+        }
+    },
+
+    watch: {
+        currentSlide() {
+            console.log(this.currentSlide)
         }
     },
 
