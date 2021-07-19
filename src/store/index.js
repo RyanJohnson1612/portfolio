@@ -12,6 +12,10 @@ export default createStore({
 		
 		decrementSection(state) {
 			state.section--;
+		},
+
+		setSection(state, section) {
+			state.section = section;
 		}
 	},
 
@@ -28,6 +32,10 @@ export default createStore({
 
 		decrementSection(context) {
 			context.commit('decrementSection');
+		},
+
+		setSection(context, section) {
+			context.commit('setSection', section)
 		}
 	},
 });

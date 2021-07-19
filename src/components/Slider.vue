@@ -1,17 +1,21 @@
 <template>
     <div>
-        <div v-for="slide in numSlides" :key="slide" v-show="slide == currentSlide">
-            <transition-group name="fade">
-                <slot :name="slide"></slot>
-            </transition-group>
+        <div class="flex flex-col items-center">
+            <div v-for="slide in numSlides" :key="slide" v-show="slide == currentSlide">
+                <transition-group name="fade">
+                    <slot :name="slide" :key="slide"></slot>
+                </transition-group>
+            </div>
+            <div class="flex items-center">
+                <div v-if="nav" class="prev-button mr-2" @click="prevSlide()"></div>
+                
+                <ul v-if="dots" class="flex align-middle justify-end flex-row">
+                    <li v-for="slide in numSlides" :key="slide" class="h-4 w-1 m-2 bg-white hover:opacity-100 cursor-pointer" :class="( currentSlide == slide ? 'opacity-100' : 'opacity-30')" @click="gotoSlide(slide)"></li>
+                </ul>
+
+                <div v-if="nav" class="next-button ml-2" @click="nextSlide()"></div>
+            </div>
         </div>
-        <div>
-            <ul v-if="dots" class="flex align-middle justify-end flex-row pointer-events-none">
-                <li v-for="slide in numSlides" :key="slide" class="h-4 w-4 rounded-full m-2 bg-gray-400" v-on:click="currentSlide = slide"></li>
-            </ul>
-        </div>
-        <div v-if="nav" v-on:click="nextSlide()">Next Slide</div>
-        <div v-if="nav" v-on:click="prevSlide()">Prev Slide</div>
     </div>    
 </template>
 
@@ -78,6 +82,10 @@ export default {
             }
         },
 
+        gotoSlide(slide) {
+            this.currentSlide = slide;
+        },
+
         autoChangeSlide() {
             setTimeout(() => {
                 this.nextSlide();
@@ -89,5 +97,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .prev-button {
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-right: 10px solid white;
+        border-bottom: 8px solid transparent;
+        opacity: 0.3;
+        cursor: pointer;
 
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .next-button {
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-left: 10px solid white;
+        border-bottom: 8px solid transparent;
+        opacity: 0.3;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
 </style>

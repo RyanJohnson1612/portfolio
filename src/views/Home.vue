@@ -8,7 +8,10 @@
 				<img src="../../public/assets/logo.png" alt="Logo" width="150" height="150">
 				<h1 class="text-5xl text-white ml-5">Ryan Johnson</h1>
 			</div>
-			<div class="absolute bottom-0 mb-8 h-4 w-4 bg-red-700 cursor-pointer" v-on:click="nextSection()"></div>
+			
+			<div v-if="section < 4 && !selected" class="fixed bottom-0 mb-8 cursor-pointer arrow-container" v-on:click="nextSection()">
+				<div class="down-arrow"></div>
+			</div>
 		</div>
 
 		<!-- Section 1
@@ -24,6 +27,8 @@
 					<template v-slot:1><div><img src="../../public/assets/projects/homicity/homepage.jpeg"></div></template>
 				</slider>
 
+				<p class="absolute bottom-0 w-full text-xl text-white mt-4 p-2 pr-10 pointer-events-none" style="background: rgba(0,0,0,0.75)">Homicity started as a real estate search engine, and later pivoted to real estate platform that offered service to real estate brokerages.</p>
+
 				<div class="triangle" ref="tri2" @click="sectionSelected()"></div>
 				<transition name="fade">
 					<p v-if="!selected" class="more-info">More info</p>
@@ -33,10 +38,39 @@
 			<!-- More info section -->
 			<transition name="slide-fade">
 				<div v-if="selected && section == 2" class="flex flex-row justify-start absolute w-full lg:w-4/5 h-screen">
-					<div class="flex items-baseline justify-start fixed top-0">
+					<div class="flex items-center justify-between absolute top-0 w-full">
 						<h3 class="p-6 text-3xl text-white">Homicity Platform</h3>
+						<div class="text-white text-xl cursor-pointer close-button" @click="closeSelection()">X</div>
 					</div>
-					<div class="absolute text-white text-3xl cursor-pointer close-button" @click="closeSelection()">X</div>
+
+					<div class="h-screen w-full flex flex-col justify-center p-6">
+						<p class="text-white text-lg">The Homicity was built using these technologies. My main responsibility was developing the front end for the platform and client specific customizations.</p>
+						<div class="flex items-center justify-between w-full my-8">
+							<a href="https://vuejs.org/" target="_blank" class="flex items-center justify-center flex-col w-1/3 cursor-pointer hover:opacity-50">
+								<img src="../../public/assets/logos/vue-logo.png" class="w-1/2">
+								<h4 class="text-white text-2xl mt-4	">Vue.js</h4>	
+							</a>
+							<a href="https://tailwindcss.com/" target="_blank" class="flex items-center justify-center flex-col w-1/3 cursor-pointer hover:opacity-50">
+								<img src="../../public/assets/logos/tailwind-logo.png" class="w-1/2">
+								<h4 class="text-white text-2xl mt-4	">Tailwind CSS</h4>	
+							</a>
+							<a href="https://laravel.com/" target="_blank" class="flex items-center justify-center flex-col w-1/3 cursor-pointer hover:opacity-50">
+								<img src="../../public/assets/logos/laravel-logo.png" class="w-1/2">
+								<h4 class="text-white text-2xl mt-4	">Laravel</h4>	
+							</a>
+						</div>	
+						<div class="flex items-center justify-between self-center w-4/6 my-8">
+							<a href="https://www.elastic.co/elasticsearch/" target="_blank" class="flex items-center justify-center flex-col w-2/5 cursor-pointer hover:opacity-50">
+								<img src="../../public/assets/logos/elasticsearch-logo.png" class="w-1/2">
+								<h4 class="text-white text-2xl mt-4	">Elasticsearch</h4>	
+							</a>
+							<a href="https://www.mapbox.com/" target="_blank" class="flex items-center justify-center flex-col w-2/5 cursor-pointer hover:opacity-50">
+								<img src="../../public/assets/logos/mapbox-logo.png" class="w-1/2">
+								<h4 class="text-white text-2xl mt-4	">Mapbox</h4>	
+							</a>
+						</div>
+					</div>
+
 				</div>
 			</transition>
 		</div>
@@ -64,19 +98,24 @@
 			<!-- More info section -->
 			<transition name="slide-fade">
 				<div v-if="selected && section == 3" class="absolute w-full lg:w-4/5 h-screen">
-					<div class="flex items-baseline justify-start fixed top-0">
-						<h3 class="p-6 text-3xl text-white">Sutton West Coast</h3>
-						<a href="https://suttonwestcoast.com/" target="_blank" class="text-primary hover:underline">Visit site</a>
+					<div class="flex items-center justify-between absolute top-0 w-full">
+						<div class="flex items-baseline">
+							<h3 class="p-6 text-3xl text-white">Sutton West Coast</h3>
+							<a href="https://suttonwestcoast.com/" target="_blank" class="text-primary hover:underline">Visit site</a>
+						</div>
+						<div class="text-white text-xl cursor-pointer close-button" @click="closeSelection()">
+							<p>X</p>
+						</div>
 					</div>
-					<slider class="h-screen flex items-center justify-center" :num-slides="4" :nav="true">
+					<slider class="h-screen flex items-center justify-center" :num-slides="4" :nav="true" :dots="true">
 
 						<!-- Search results -->
 						<template v-slot:1>
-							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/2 px-6 text-white">
+							<div class="flex flex-row items-center mb-8" :key="1">
+								<div class="w-1/4 px-6 text-white">
 									<p class="text-lg">This is the property search results. The search results are based on the location entered by the user. The layout consists of property card on the left and the map on the right. The Mapbox library was used to display the map and cluster the property results. </p>
 								</div>
-								<div class="w-1/2 px-6">
+								<div class="w-3/4 px-6">
 									<img src="../../public/assets/projects/swc/property-search.jpeg">
 								</div>
 							</div>
@@ -84,11 +123,11 @@
 
 						<!-- Additional Filters -->
 						<template v-slot:2>
-							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/2 px-6 text-white">
+							<div class="flex flex-row items-center mb-8" :key="2">
+								<div class="w-1/4 px-6 text-white">
 									<p class="text-lg">These are the property search filters. Vuex store was used to manage the search criteria. When the user updates a search filter, a get request is sent to the Elasticsearch API to execute the search and retrieve the results.</p>
 								</div>
-								<div class="w-1/2 px-6">
+								<div class="w-3/4 px-6">
 									<img src="../../public/assets/projects/swc/additional-filters.jpeg">
 								</div>
 							</div>
@@ -96,11 +135,11 @@
 
 						<!-- Property details -->
 						<template v-slot:3>
-							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/2 px-6 text-white">
+							<div class="flex flex-row items-center mb-8" :key="3">
+								<div class="w-1/4 px-6 text-white">
 									<p class="text-lg">This is the property details view. The listing data is stored in a SQL database and accessed through a backend API.</p>
 								</div>
-								<div class="w-1/2 px-6">
+								<div class="w-3/4 px-6">
 									<img src="../../public/assets/projects/swc/property-listing.jpeg">
 								</div>
 							</div>
@@ -108,20 +147,16 @@
 
 						<!-- Costs calc -->
 						<template v-slot:4>
-							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/2 px-6 text-white">
+							<div class="flex flex-row items-center mb-8" :key="4">
+								<div class="w-1/4 px-6 text-white">
 									<p class="text-lg">This is the running costs calculator for the property listing. It has a mortgage calculator, the estimated insurance cost and the monthly maintenance fees. Using the data from the listing, the mortgage and insurance costs are calculated on the front end.</p>
 								</div>
-								<div class="w-1/2 px-6">
+								<div class="w-3/4 px-6">
 									<img src="../../public/assets/projects/swc/mortgage-calc.jpeg">
 								</div>
 							</div>
 						</template>	
 					</slider>
-
-					<div class="absolute text-white text-3xl cursor-pointer close-button" @click="closeSelection()">
-						<p>X</p>
-					</div>
 				</div>
 			</transition>
 		</div>
@@ -151,19 +186,25 @@
 			<!-- More info section -->
 			<transition name="slide-fade">
 				<div v-if="selected && section == 4" class="absolute w-full lg:w-4/5 h-screen">
-					<div class="flex items-baseline justify-start fixed top-0">
-						<h3 class="p-6 text-3xl text-white">breathebnb</h3>
-						<a href="https://breatheproperties.com/" target="_blank" class="text-primary hover:underline">Visit site</a>
+					<div class="flex items-center justify-between absolute top-0 w-full">
+						<div class="flex items-baseline">
+							<h3 class="p-6 text-3xl text-white">breathebnb</h3>
+							<a href="https://breatheproperties.com/" target="_blank" class="text-primary hover:underline">Visit site</a>
+						</div>
+						<div class="text-white text-xl cursor-pointer close-button" @click="closeSelection()">
+							<p>X</p>
+						</div>
 					</div>
-					<slider class="h-screen flex items-center justify-center" :num-slides="4" :nav="true">
+
+					<slider class="h-screen flex items-center justify-center" :num-slides="4" :nav="true" :dots="true">
 
 						<!-- Search results -->
 						<template v-slot:1>
 							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/2 px-6 text-white">
+								<div class="w-1/4 px-6 text-white">
 									<p class="text-lg">This is the property search results. The search results display every listing which can be filtered by specific cities. The layout consists of property card on the left and the map on the right. The Mapbox library was used to display the map and cluster the property results. </p>
 								</div>
-								<div class="w-1/2 px-6">
+								<div class="w-3/4 px-6">
 									<img src="../../public/assets/projects/breathebnb/listing-results.jpeg">
 								</div>
 							</div>
@@ -172,10 +213,10 @@
 						<!-- Additional Filters -->
 						<template v-slot:2>
 							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/2 px-6 text-white">
+								<div class="w-1/4 px-6 text-white">
 									<p class="text-lg">These are the property search filters. When the user updates a search filter, a get request is sent to a backend API to execute the search and retrieve the results.</p>
 								</div>
-								<div class="w-1/2 px-6">
+								<div class="w-3/4 px-6">
 									<img src="../../public/assets/projects/breathebnb/additional-filters.jpeg">
 								</div>
 							</div>
@@ -184,10 +225,10 @@
 						<!-- Property details -->
 						<template v-slot:3>
 							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/2 px-6 text-white">
+								<div class="w-1/4 px-6 text-white">
 									<p class="text-lg">This is the property details view. The listing data is stored in a SQL database and accessed through a backend API.</p>
 								</div>
-								<div class="w-1/2 px-6">
+								<div class="w-3/4 px-6">
 									<img src="../../public/assets/projects/breathebnb/listing-details.jpeg">
 								</div>
 							</div>
@@ -196,19 +237,15 @@
 						<!-- Costs calc -->
 						<template v-slot:4>
 							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/2 px-6 text-white">
+								<div class="w-1/4 px-6 text-white">
 									<p class="text-lg">This is a rental application form that allows clients to register their property with breathebnb. Once submitted, the form will appear in the breathebnb admin panel as a new lead.</p>
 								</div>
-								<div class="w-1/2 px-6">
+								<div class="w-3/4 px-6">
 									<img src="../../public/assets/projects/breathebnb/application-form.jpeg">
 								</div>
 							</div>
 						</template>	
 					</slider>
-
-					<div class="absolute text-white text-3xl cursor-pointer close-button" @click="closeSelection()">
-						<p>X</p>
-					</div>
 				</div>
 			</transition>
 		</div>
@@ -234,6 +271,7 @@ export default {
 
 	created () {
 		this.addWheelEvent();
+		this.$store.dispatch('setSection', 1);
 	},
 
 	watch: {
@@ -356,6 +394,58 @@ export default {
 		font-family: 'Harmonia Sans', sans-serif !important;
 	}
 
+	.arrow-container:hover > .down-arrow{
+		border-top: 10px solid $primary;
+			
+			&::after {
+				background: $primary;
+			}
+	}
+
+	.down-arrow {
+		width: 0;
+		height: 0;
+		margin-top: 50px;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 10px solid white;
+		transition: all 0.3s ease;
+
+
+		&::before {
+			content: ' ';
+			display: block;
+			width: 0;
+			height: 0;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			border-top: 10px solid $secondary;
+			position: relative;
+			top: -11px;
+			right: 10px;
+		}
+
+		&::after {
+			content: ' ';
+			display: block;
+			width: 1px;
+			height: 50px;
+			background: white;
+			position: relative;
+			top: -61px;
+			right: 1px;
+			transition: all 0.3s ease;
+		}
+
+		&:hover {
+			border-top: 10px solid $primary;
+			
+			&::after {
+				background: $primary;
+			}
+		}
+	}
+
 	.triangle {
 		position: absolute;
 		right: 0;
@@ -388,12 +478,11 @@ export default {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		top: 60px;
-		right: -50px;
-		height: 50px;
-		width: 50px;
+		height: 40px;
+		width: 40px;
 		border: 2px solid white;
 		border-radius: 50px;
+		transition: 0.3s;
 
 		&:hover {
 			background-color: rgba(255,255,255, 0.3);
