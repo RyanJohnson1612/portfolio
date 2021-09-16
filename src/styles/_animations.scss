@@ -60,3 +60,15 @@
 .fade-enter-from, .fade-leave-to, .fade-leave-active {
     opacity: 0;
 }
+
+.slider-fade-enter-active {
+    transition: all 1.5s ease;
+}
+
+.slider-fade-leave-active {
+    transition: all 1.5s ease;
+}
+
+.slider-fade-enter-from, .fade-leave-to, .fade-leave-active {
+    opacity: 0;
+}

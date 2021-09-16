@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "fillika-smooth-scroll": "^1.0.5",
     "postcss": "^7",
+    "swiped-events": "^1.1.4",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.8",

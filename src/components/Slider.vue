@@ -2,8 +2,8 @@
     <div>
         <div class="flex flex-col items-center">
             <div v-for="slide in numSlides" :key="slide" v-show="slide == currentSlide">
-                <transition-group name="fade">
-                    <slot :name="slide" :key="slide"></slot>
+                <transition-group name="slider-fade">
+                    <slot v-if="currentSlide == slide" :name="slide" :key="slide"></slot>
                 </transition-group>
             </div>
             <div class="flex items-center">

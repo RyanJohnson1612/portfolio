@@ -4,9 +4,9 @@
 		<!-- Header
 		=========================================================== -->
 		<div ref="1" class="flex items-center justify-center relative w-full h-screen">
-			<div class="flex items-center">
+			<div class="flex flex-col sm:flex-row items-center">
 				<img src="../../public/assets/logo.png" alt="Logo" width="150" height="150">
-				<h1 class="text-5xl text-white ml-5">Ryan Johnson</h1>
+				<h1 class="text-5xl text-white mt-6 sm:mt-0 ml-0 sm:ml-5">Ryan Johnson</h1>
 			</div>
 			
 			<div v-if="section < 4 && !selected" class="fixed bottom-0 mb-8 cursor-pointer arrow-container" v-on:click="nextSection()">
@@ -27,7 +27,7 @@
 					<template v-slot:1><div><img src="../../public/assets/projects/homicity/homepage.jpeg"></div></template>
 				</slider>
 
-				<p class="absolute bottom-0 w-full text-xl text-white mt-4 p-2 pr-10 pointer-events-none" style="background: rgba(0,0,0,0.75)">Homicity started as a real estate search engine, and later pivoted to real estate platform that offered service to real estate brokerages.</p>
+				<p class="md:absolute bottom-0 w-full text-xl text-white md:mt-4 p-2 pr-10 pointer-events-none" style="background: rgba(0,0,0,0.75)">Homicity started as a real estate search engine, and later pivoted to real estate platform that offered service to real estate brokerages.</p>
 
 				<div class="triangle" ref="tri2" @click="sectionSelected()"></div>
 				<transition name="fade">
@@ -86,7 +86,7 @@
 				<!-- Slider -->
 				<div><img src="../../public/assets/projects/swc/homepage.jpeg"></div>
 
-				<p class="absolute bottom-0 w-full text-xl text-white mt-4 p-2 pr-10 pointer-events-none" style="background: rgba(0,0,0,0.75)">Sutton West Coast's site was built on the Homicity platform as part contract with Sutton Real Estate. This was the first brokerage completed. I was responsible for the entire front end development.</p>
+				<p class="md:absolute bottom-0 w-full text-xl text-white md:mt-4 p-2 pr-10 pointer-events-none" style="background: rgba(0,0,0,0.75)">Sutton West Coast's site was built on the Homicity platform as part contract with Sutton Real Estate. This was the first brokerage completed. I was responsible for the entire front end development.</p>
 
 				<div class="triangle" ref="tri3" @click="sectionSelected()"></div>
 				
@@ -111,11 +111,11 @@
 
 						<!-- Search results -->
 						<template v-slot:1>
-							<div class="flex flex-row items-center mb-8" :key="1">
-								<div class="w-1/4 px-6 text-white">
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8" :key="1">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
 									<p class="text-lg">This is the property search results. The search results are based on the location entered by the user. The layout consists of property card on the left and the map on the right. The Mapbox library was used to display the map and cluster the property results. </p>
 								</div>
-								<div class="w-3/4 px-6">
+								<div class="w-full md:w-3/4 px-6">
 									<img src="../../public/assets/projects/swc/property-search.jpeg">
 								</div>
 							</div>
@@ -123,11 +123,11 @@
 
 						<!-- Additional Filters -->
 						<template v-slot:2>
-							<div class="flex flex-row items-center mb-8" :key="2">
-								<div class="w-1/4 px-6 text-white">
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8" :key="2">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
 									<p class="text-lg">These are the property search filters. Vuex store was used to manage the search criteria. When the user updates a search filter, a get request is sent to the Elasticsearch API to execute the search and retrieve the results.</p>
 								</div>
-								<div class="w-3/4 px-6">
+								<div class="w-full md:w-3/4 px-6">
 									<img src="../../public/assets/projects/swc/additional-filters.jpeg">
 								</div>
 							</div>
@@ -135,11 +135,11 @@
 
 						<!-- Property details -->
 						<template v-slot:3>
-							<div class="flex flex-row items-center mb-8" :key="3">
-								<div class="w-1/4 px-6 text-white">
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8" :key="3">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
 									<p class="text-lg">This is the property details view. The listing data is stored in a SQL database and accessed through a backend API.</p>
 								</div>
-								<div class="w-3/4 px-6">
+								<div class="w-full md:w-3/4 px-6">
 									<img src="../../public/assets/projects/swc/property-listing.jpeg">
 								</div>
 							</div>
@@ -147,11 +147,11 @@
 
 						<!-- Costs calc -->
 						<template v-slot:4>
-							<div class="flex flex-row items-center mb-8" :key="4">
-								<div class="w-1/4 px-6 text-white">
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8" :key="4">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
 									<p class="text-lg">This is the running costs calculator for the property listing. It has a mortgage calculator, the estimated insurance cost and the monthly maintenance fees. Using the data from the listing, the mortgage and insurance costs are calculated on the front end.</p>
 								</div>
-								<div class="w-3/4 px-6">
+								<div class="w-full md:w-3/4 px-6">
 									<img src="../../public/assets/projects/swc/mortgage-calc.jpeg">
 								</div>
 							</div>
@@ -174,7 +174,7 @@
 					<template v-slot:1><div><img src="../../public/assets/projects/breathebnb/homepage.jpeg"></div></template>
 				</slider>
 
-				<p class="absolute bottom-0 w-full text-xl text-white mt-4 p-2 pr-12 pointer-events-none" style="background: rgba(0,0,0,0.75)">breathebnb is Canadian company that manages AirBnB properties. Homicity was contracted to rebuild their website to provide an improved user experience.</p>
+				<p class="md:absolute bottom-0 w-full text-xl text-white md:mt-4 p-2 pr-12 pointer-events-none" style="background: rgba(0,0,0,0.75)">breathebnb is Canadian company that manages AirBnB properties. Homicity was contracted to rebuild their website to provide an improved user experience.</p>
 
 				<div class="triangle" ref="tri4" @click="sectionSelected()"></div>
 
@@ -200,11 +200,11 @@
 
 						<!-- Search results -->
 						<template v-slot:1>
-							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/4 px-6 text-white">
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
 									<p class="text-lg">This is the property search results. The search results display every listing which can be filtered by specific cities. The layout consists of property card on the left and the map on the right. The Mapbox library was used to display the map and cluster the property results. </p>
 								</div>
-								<div class="w-3/4 px-6">
+								<div class="w-full md:w-3/4 px-6">
 									<img src="../../public/assets/projects/breathebnb/listing-results.jpeg">
 								</div>
 							</div>
@@ -212,11 +212,11 @@
 
 						<!-- Additional Filters -->
 						<template v-slot:2>
-							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/4 px-6 text-white">
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
 									<p class="text-lg">These are the property search filters. When the user updates a search filter, a get request is sent to a backend API to execute the search and retrieve the results.</p>
 								</div>
-								<div class="w-3/4 px-6">
+								<div class="w-full md:w-3/4 px-6">
 									<img src="../../public/assets/projects/breathebnb/additional-filters.jpeg">
 								</div>
 							</div>
@@ -224,11 +224,11 @@
 
 						<!-- Property details -->
 						<template v-slot:3>
-							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/4 px-6 text-white">
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
 									<p class="text-lg">This is the property details view. The listing data is stored in a SQL database and accessed through a backend API.</p>
 								</div>
-								<div class="w-3/4 px-6">
+								<div class="w-full md:w-3/4 px-6">
 									<img src="../../public/assets/projects/breathebnb/listing-details.jpeg">
 								</div>
 							</div>
@@ -236,11 +236,11 @@
 
 						<!-- Costs calc -->
 						<template v-slot:4>
-							<div class="flex flex-row items-center mb-8">
-								<div class="w-1/4 px-6 text-white">
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
 									<p class="text-lg">This is a rental application form that allows clients to register their property with breathebnb. Once submitted, the form will appear in the breathebnb admin panel as a new lead.</p>
 								</div>
-								<div class="w-3/4 px-6">
+								<div class="w-full md:w-3/4 px-6">
 									<img src="../../public/assets/projects/breathebnb/application-form.jpeg">
 								</div>
 							</div>
@@ -272,6 +272,13 @@ export default {
 	created () {
 		this.addWheelEvent();
 		this.$store.dispatch('setSection', 1);
+		window.addEventListener('swiped-up', function(e) {
+			this.prevSection();
+		});
+		window.addEventListener('swiped-down', function(e) {
+			this.nextSection();
+		});
+
 	},
 
 	watch: {
@@ -330,6 +337,11 @@ export default {
 			}
 		},
 
+		handleTouchMove(event) {
+			console.log('touchend')
+			console.log(event);
+		},
+
 		nextSection() {
 			if(this.section < 4) {
 				this.$store.dispatch('incrementSection');
@@ -368,8 +380,8 @@ export default {
 
 		sectionSelected() {
 			let triangle = 'tri' + this.section;
-			this.$refs[triangle].style.borderRightWidth = (this.$refs[this.section].offsetWidth +  100) + 'px';
-			this.$refs[triangle].style.borderTopWidth = (this.$refs[this.section].offsetHeight + 100) + 'px';
+			this.$refs[triangle].style.borderRightWidth = (this.$refs[this.section].offsetWidth +  500) + 'px';
+			this.$refs[triangle].style.borderTopWidth = (this.$refs[this.section].offsetHeight + 500) + 'px';
 
 			setTimeout(() => {
 				this.selected = true;
@@ -480,6 +492,7 @@ export default {
 		justify-content: center;
 		height: 40px;
 		width: 40px;
+		margin-right: 10px;
 		border: 2px solid white;
 		border-radius: 50px;
 		transition: 0.3s;
