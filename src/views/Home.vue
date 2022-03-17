@@ -9,7 +9,7 @@
 				<h1 class="text-5xl text-white mt-6 sm:mt-0 ml-0 sm:ml-5">Ryan Johnson</h1>
 			</div>
 			
-			<div v-if="section < 4 && !selected" class="fixed bottom-0 mb-8 cursor-pointer arrow-container" v-on:click="nextSection()">
+			<div v-if="section < 5 && !selected" class="fixed bottom-0 mb-8 cursor-pointer arrow-container" v-on:click="nextSection()">
 				<div class="down-arrow"></div>
 			</div>
 		</div>
@@ -250,8 +250,107 @@
 			</transition>
 		</div>
 
+		<!-- Section 5
+		=========================================================== -->
+		<div ref="5" class="flex items-center justify-center w-full h-screen">
+			<div class="relative w-full md:w-3/4 lg:w-1/2 mx-4" v-on:click="sectionSelected()">
+				<div class="overflow-hidden relative">
+					<h2 ref="section-2-header" class="relative text-2xl text-white font-bold">Burgers&amp;Friends</h2>
+				</div>
+
+				<!-- Slider -->
+				<slider :num-slides="1" :autoplay="5000">
+					<template v-slot:1><div><img src="../../public/assets/projects/bff/menu.png"></div></template>
+				</slider>
+
+				<p class="md:absolute bottom-0 w-full text-xl text-white md:mt-4 p-2 pr-10 pointer-events-none" style="background: rgba(0,0,0,0.75)">Burgers&amp;Friends was a group project that I worked on as part of the Lighthouse Labs Web Development Bootcamp. I was responsible for the frontend and backend of the cart, orders and order details page. The site is a bit slow because it is hosted on Heroku using a free tier dyno.</p>
+
+				<div class="triangle" ref="tri5" @click="sectionSelected()"></div>
+				<transition name="fade">
+					<p v-if="!selected" class="more-info">More info</p>
+				</transition>
+			</div>
+
+			<!-- More info section -->
+			<transition name="slide-fade">
+				<div v-if="selected && section == 5" class="flex flex-row justify-start absolute w-full lg:w-4/5 h-screen">
+					<div class="flex items-center justify-between absolute top-0 w-full">
+						<div class="flex items-baseline">
+							<h3 class="p-6 text-3xl text-white">Burgers&amp;Friends</h3>
+							<a href="https://omen-715154.herokuapp.com/" target="_blank" class="text-primary hover:underline">Visit site</a>
+						</div>
+						<div class="text-white text-xl cursor-pointer close-button" @click="closeSelection()">
+							<p>X</p>
+						</div>
+					</div>
+					<slider class="h-screen flex items-center justify-center" :num-slides="5" :nav="true" :dots="true">
+
+						<!-- Menu -->
+						<template v-slot:1>
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
+									<p class="text-lg">This is the menu page, the user is able to see a list of menu items available and is able to click on them to see more details.</p>
+								</div>
+								<div class="w-full md:w-3/4 px-6">
+									<img src="../../public/assets/projects/bff/menu.png">
+								</div>
+							</div>
+						</template>	
+
+						<!-- Menu Item Detail -->
+						<template v-slot:2>
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
+									<p class="text-lg">This is the menu item detail page, the user can view more details about the item and add the item to their cart. When the item is added to the cart, a cookie is set in the users browser to keep track of their cart items.</p>
+								</div>
+								<div class="w-full md:w-3/4 px-6">
+									<img src="../../public/assets/projects/bff/menu-detail.png">
+								</div>
+							</div>
+						</template>	
+
+						<!-- Cart -->
+						<template v-slot:3>
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
+									<p class="text-lg">This is the cart page. The user can review what's in their cart and when they are ready to checkout, they must add their name, phone number and preferred pickup time. When the order is sent to the restaurant will receive a text message telling them that a new order has been placed.</p>
+								</div>
+								<div class="w-full md:w-3/4 px-6">
+									<img src="../../public/assets/projects/bff/cart.png">
+								</div>
+							</div>
+						</template>	
+
+						<!-- Order index -->
+						<template v-slot:4>
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
+									<p class="text-lg">This is the orders index page, the restaurant can see a list of orders as well as the status of each order.</p>
+								</div>
+								<div class="w-full md:w-3/4 px-6">
+									<img src="../../public/assets/projects/bff/order.png">
+								</div>
+							</div>
+						</template>	
+
+						<!-- Order details -->
+						<template v-slot:5>
+							<div class="flex flex-col-reverse md:flex-row items-center mb-8">
+								<div class="w-full md:w-1/4 px-6 mt-4 md:mt-0 text-white">
+									<p class="text-lg">This is the orders detail page, the restaurant is able to see what the customer has ordered, when they ordered it, the preferred pickup time and the customer's phone number. The restaurant can confirm the order by setting an estimated pickup time. Once they do this a text message is sent to the customer letting them know what time they can pickup their order. The restaurant can then mark the order as complete, once the customer has picked up their order.</p>
+								</div>
+								<div class="w-full md:w-3/4 px-6">
+									<img src="../../public/assets/projects/bff/order-detail.png">
+								</div>
+							</div>
+						</template>	
+					</slider>
+				</div>
+			</transition>
+		</div>
+
 		<div v-show="section > 1" class="fixed w-full h-screen top-0 pointer-events-none">
-			<scroll-bar class="hidden md:flex" :num-sections="3"></scroll-bar>
+			<scroll-bar class="hidden md:flex" :num-sections="4"></scroll-bar>
 		</div>
 	</div>
 </template>
@@ -343,7 +442,7 @@ export default {
 		},
 
 		nextSection() {
-			if(this.section < 4) {
+			if(this.section < 5) {
 				this.$store.dispatch('incrementSection');
 				smoothScroll({
 					target: this.$refs[this.section],
